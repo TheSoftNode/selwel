@@ -7,9 +7,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-const ThemeProviders: FC<Props> = ({ children }) => {
+const ThemeProviders: FC<Props> = ({ children }) =>
+{
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
+    <ThemeProvider attribute="class" defaultTheme="dark">
       {children}
     </ThemeProvider>
   );
