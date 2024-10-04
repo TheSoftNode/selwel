@@ -37,8 +37,8 @@ const Header = (props: Props) =>
         <div className="flex justify-between items-center">
           <Image
             src={"/logos/logo1.jpeg"}
-            width={60}
-            height={50}
+            width={144}
+            height={80}
             alt="selwel"
             className="w-36 h-20 pt-5 p-2 px-7"
           />
