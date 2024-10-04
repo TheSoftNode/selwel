@@ -10,7 +10,7 @@ type Props = {
 const ThemeProviders: FC<Props> = ({ children }) =>
 {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <ThemeProvider attribute="class" defaultTheme="light">
       {children}
     </ThemeProvider>
   );

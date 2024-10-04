@@ -29,9 +29,9 @@ const Header = (props: Props) =>
   return (
     <header
       className={`${header
-        ? " bg-white shadow-lg "
-        : ""
-        } sticky top-0 z-30 transition-all ${pathname === "/" && "#fff"}`}
+        ? "bg-white shadow-lg dark:bg-accent "
+        : "dark:bg-transparent"
+        } sticky top-0 z-30 transition-all ${pathname === "/" && ""}`}
     >
       <div className="mx-auto">
         <div className="flex justify-between items-center">
@@ -46,8 +46,8 @@ const Header = (props: Props) =>
             {/* nav */}
             <Nav
               containerStyles="hidden md:flex gap-x-8 items-center"
-              linkStyles="relative  transition-all"
-              underlineStyles="absolute left-0 top-full h-[2px]  w-full"
+              linkStyles="relative hover:text-primary  transition-all"
+              underlineStyles="absolute left-0 top-full bg-primary h-[2px]  w-full"
             />
 
             <ThemeToggler />
