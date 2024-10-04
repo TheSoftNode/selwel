@@ -53,7 +53,7 @@ const Header = (props: Props) =>
 
             <ThemeToggler />
 
-            <Link href={'/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
+            <Link href={'auth/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
               Login
             </Link>
             {/* mobile nav */}
