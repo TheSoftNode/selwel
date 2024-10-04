@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { inter } from '@/app/ui/fonts';
 import "./globals.css";
 import ThemeProviders from "@/components/Theme/ThemeProvider";
 import Header from "@/components/Header/Header";
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-      // className={`antialiased`}
+        className={`${inter.className} antialiased`}
       >
         <ThemeProviders>
           <Header />
