@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import ThemeToggler from "../Theme/ThemeToggler";
 import Image from "next/image";
 import Link from "next/link";
+import MobileNav from "./MobileNav";
 
 type Props = {};
 
@@ -42,7 +43,7 @@ const Header = (props: Props) =>
             alt="selwel"
             className="w-36 h-20 pt-5 p-2 px-7"
           />
-          <div className="flex p-4 m-4">
+          <div className="flex p-4">
             {/* nav */}
             <Nav
               containerStyles="hidden md:flex gap-x-8 items-center"
@@ -52,12 +53,12 @@ const Header = (props: Props) =>
 
             <ThemeToggler />
 
-            <Link href={'/login'} className='px-6 p-2 ml-6 font-bold bg-lime-500 rounded-xl'>
+            <Link href={'/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
               Login
             </Link>
             {/* mobile nav */}
-            <div className="lg:hidden">
-              {/* <MobileNav /> */}
+            <div className="ml-4 md:hidden">
+              <MobileNav />
             </div>
           </div>
         </div>
