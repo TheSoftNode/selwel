@@ -3,6 +3,7 @@ import { inter } from '@/app/ui/fonts';
 import "./globals.css";
 import ThemeProviders from "@/components/Theme/ThemeProvider";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProviders>
           <Header />
           {children}
+          <Footer />
         </ThemeProviders>
       </body>
     </html>
