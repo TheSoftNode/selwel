@@ -23,11 +23,13 @@ const Login = () =>
                     <>
                         <input
                             type="text"
+                            name='country'
                             placeholder="Country of Residence"
                             className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                         />
                         <input
                             type="text"
+                            name='accountType'
                             placeholder="Type of Account"
                             className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                         />
@@ -36,6 +38,7 @@ const Login = () =>
 
                 <input
                     type="email"
+                    name='email'
                     placeholder="Email Address"
                     className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                     required
@@ -43,6 +46,7 @@ const Login = () =>
 
                 <input
                     type="password"
+                    name='password'
                     placeholder="Password"
                     className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                     required
