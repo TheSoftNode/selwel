@@ -1,4 +1,6 @@
 scripts:
+  createapp:
+    - cd src && python manage.py startapp
   check:
     - pip freeze
   install:

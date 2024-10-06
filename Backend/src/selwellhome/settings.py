@@ -48,8 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # external
+    'corsheaders',
     'ninja_extra',
     'ninja_jwt'
+    
+    # internal
+    'users'
 ]
 
 MIDDLEWARE = [
