@@ -13,3 +13,13 @@ class UserCreateSchema(Schema):
     password: str = None
     # timestamp: datetime
     # updated: datetime
+
+
+class ErrorUserCreateSchema(Schema):
+    # Create -> Data
+    # UserData
+    country: List[Any]
+    accountType: List[Any]
+    email: List[Any]
+    password: List[Any]
+    # non_field_errors: List[dict] = []
