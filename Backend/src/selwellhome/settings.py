@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     # external
     'corsheaders',
     'ninja_extra',
-    'ninja_jwt'
-    
+    'ninja_jwt',
+
     # internal
     'users'
 ]
