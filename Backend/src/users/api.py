@@ -1,41 +1,30 @@
-from typing import List
 import json
-from django.shortcuts import get_object_or_404
 from ninja import Router
 
 import helpers
-from ninja_jwt.authentication import JWTAuth
-
-from .forms import WaitlistEntryCreateForm
-from .models import WaitlistEntry
+from .forms import UserCreateForm
+from .models import User
 from .schemas import (
-    UserCreateSchema
+    UserCreateSchema,
+    ErrorUserCreateSchema
 )
 
 router = Router()
 
 
-
-
-
-# /api/waitlists/
+# /api/users/
 @router.post("", 
     response={
         201: UserCreateSchema,
-        400: ErrorWaitlistEntryCreateSchema
+        400: ErrorUserCreateSchema
     },
     auth=helpers.api_auth_user_or_annon
     )
-def create_waitlist_entry(request, data:WaitlistEntryCreateSchema): 
-    form = WaitlistEntryCreateForm(data.dict())
+def register(request, data:UserCreateSchema): 
+    form = UserCreateForm(data.dict())
     if not form.is_valid():
-        # cleaned_data = form.cleaned_data
-        # obj = WaitlistEntry(**cleaned_data.dict())
-        # {'email': [{'message': 'Cannot use gmail', 'code': ''}]}
         form_errors = json.loads(form.errors.as_json())
         return 400, form_errors
     obj = form.save(commit=False)
-    if request.user.is_authenticated:
-        obj.user = request.user
     obj.save()
     return 201, obj

@@ -2,7 +2,7 @@ from django import forms
 from django.utils import timezone
 from .models import User
 
-class UseCreateForm(forms.ModelForm):
+class UserCreateForm(forms.ModelForm):
     # email = forms.EmailField()
     class Meta:
         model = User
