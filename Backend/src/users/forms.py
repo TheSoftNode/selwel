@@ -17,7 +17,5 @@ class UserCreateForm(forms.ModelForm):
         )
         if qs.count() >= 5:
             raise forms.ValidationError("Cannot enter this email again today.")
-        # if email.endswith('@gmail.com'):
-        #     raise forms.ValidationError('Cannot use gmail')
         return email
     
