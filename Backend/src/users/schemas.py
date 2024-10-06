@@ -11,5 +11,5 @@ class UserCreateSchema(Schema):
     accountType: str = None
     email: EmailStr
     password: str = None
-    timestamp: datetime
-    updated: datetime
+    # timestamp: datetime
+    # updated: datetime
