@@ -1,7 +1,17 @@
 "use client";
 
 import React, { useEffect, useState, ChangeEvent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import
+    {
+        LineChart,
+        Line,
+        XAxis,
+        YAxis,
+        CartesianGrid,
+        Tooltip,
+        Legend,
+        ResponsiveContainer
+    } from 'recharts';
 
 interface Profit
 {
@@ -13,30 +23,29 @@ interface Profit
 
 const Market: React.FC = () =>
 {
-    // Initialize state with values from localStorage
-    const [selectedMarkets, setSelectedMarkets] = useState<number>(() => {
+    const [selectedMarkets, setSelectedMarkets] = useState<number>(() =>
+    {
         const storedMarkets = localStorage.getItem('selectedMarkets');
         return storedMarkets ? parseInt(storedMarkets) : 0; // Default to 0 if nothing is found
     });
 
-    const [profits, setProfits] = useState<Profit[]>(() => {
+    const [profits, setProfits] = useState<Profit[]>(() =>
+    {
         const storedProfits = localStorage.getItem('profits');
         return storedProfits ? JSON.parse(storedProfits) : []; // Default to empty array if nothing is found
     });
 
-    // Save state to localStorage whenever it changes
-    useEffect(() => {
+    useEffect(() =>
+    {
         localStorage.setItem('selectedMarkets', selectedMarkets.toString());
         localStorage.setItem('profits', JSON.stringify(profits));
     }, [selectedMarkets, profits]);
-
 
     const handleMarketChange = (e: ChangeEvent<HTMLSelectElement>) =>
     {
         const value = parseInt(e.target.value);
         setSelectedMarkets(value);
 
-        // Example profit estimates for each market
         const profitEstimates: Profit[] = Array.from({ length: value }, (_, index) =>
         {
             const weeklyProfit = 1000 * 0.05; // 5% weekly profit
@@ -53,13 +62,16 @@ const Market: React.FC = () =>
         setProfits(profitEstimates);
     };
 
-    // Example data for the chart
-    const chartData = [
-        { name: 'Week 1', profit: 2000 },
-        { name: 'Week 2', profit: 3000 },
-        { name: 'Week 3', profit: 2500 },
-        { name: 'Week 4', profit: 4000 },
-    ];
+    // Generate dynamic chart data for each market
+    const generateChartData = (marketIndex: number): Array<{ name: string; profit: number }> =>
+    {
+        return [
+            { name: 'Week 1', profit: (marketIndex + 1) * 2000 },
+            { name: 'Week 2', profit: (marketIndex + 1) * 3000 },
+            { name: 'Week 3', profit: (marketIndex + 1) * 2500 },
+            { name: 'Week 4', profit: (marketIndex + 1) * 4000 },
+        ];
+    };
 
     return (
         <div className='px-5 lg:px-20 py-10 bg-gradient-to-br from-sky-500 to-sky-700 w-full min-h-screen'>
@@ -135,6 +147,21 @@ const Market: React.FC = () =>
                                 </div>
                             </div>
 
+                            {/* Chart Section for Each Market */}
+                            <div className="mt-4 bg-gray-100 p-4 rounded-lg shadow-inner">
+                                <h3 className="text-lg font-semibold text-sky-700 mb-2">Profit Chart:</h3>
+                                <ResponsiveContainer width="100%" height={200}>
+                                    <LineChart data={generateChartData(profit.market - 1)}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Line type="monotone" dataKey="profit" stroke="#4A90E2" activeDot={{ r: 8 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+
                             {/* CTA Button */}
                             <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition-all duration-300 transform hover:scale-105">
                                 View More
@@ -147,11 +174,16 @@ const Market: React.FC = () =>
                 ))}
             </div>
 
-            {/* Chart Section */}
+            {/* General Chart Section (Optional) */}
             <div className="mt-12 bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
-                <h2 className="text-2xl font-semibold text-sky-700 mb-4">Profit Chart:</h2>
+                <h2 className="text-2xl font-semibold text-sky-700 mb-4">Overall Profit Chart:</h2>
                 <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={chartData}>
+                    <LineChart data={[
+                        { name: 'Week 1', profit: 2000 },
+                        { name: 'Week 2', profit: 3000 },
+                        { name: 'Week 3', profit: 2500 },
+                        { name: 'Week 4', profit: 4000 },
+                    ]}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis />
