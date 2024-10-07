@@ -37,8 +37,7 @@ const teamMembers = [
     },
 ];
 
-const Team = () =>
-{
+const Team = () => {
     return (
         <div className="bg-gray-100 py-16">
             <div className="max-w-7xl mx-auto px-4">
@@ -57,7 +56,7 @@ const Team = () =>
                             <img
                                 src={member.avatar}
                                 alt={member.name}
-                                className="w-full h-48 object-cover"
+                                className="w-full h-48 object-contain" // Changed object-cover to object-contain
                             />
                             <div className="p-6">
                                 <h3 className="text-lg font-bold text-gray-800">{member.name}</h3>
