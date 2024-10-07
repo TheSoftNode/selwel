@@ -36,8 +36,8 @@ const Header = (props: Props) =>
     <header
       className={`${header
         ? "bg-white shadow-lg dark:bg-accent"
-        : "dark:bg-transparent"
-        } sticky top-0 z-30 transition-all ${pathname === "/" && ""}`}
+        : "dark:bg-transparent bg-white"
+        } sticky top-0 z-30 bg-white transition-all ${pathname === "/" && ""}`}
     >
       <div className="mx-auto">
         <div className="flex justify-between items-center">
@@ -51,7 +51,7 @@ const Header = (props: Props) =>
           <div className="flex p-4">
             {/* nav */}
             <Nav
-              containerStyles="hidden md:flex gap-x-8 items-center"
+              containerStyles="hidden md:flex gap-x-8 bg-white items-center"
               linkStyles="relative hover:text-primary transition-all"
               underlineStyles="absolute left-0 top-full bg-primary h-[2px] w-full"
             />
