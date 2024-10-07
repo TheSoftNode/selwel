@@ -15,7 +15,7 @@ const Footer: React.FC = () =>
                     <nav className="flex flex-col md:flex-row md:space-x-10">
                         <a href="/" className="text-gray-400 hover:text-sky-400 transition duration-200">Home</a>
                         <a href="/market" className="text-gray-400 hover:text-sky-400 transition duration-200">Market</a>
-                        <a href="/company" className="text-gray-400 hover:text-sky-400 transition duration-200">Company</a>
+                        <a href="/about" className="text-gray-400 hover:text-sky-400 transition duration-200">Company</a>
                         <a href="/support" className="text-gray-400 hover:text-sky-400 transition duration-200">Support</a>
                     </nav>
                 </div>
