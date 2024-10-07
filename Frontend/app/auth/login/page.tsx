@@ -108,10 +108,14 @@ const Login = () =>
                 </button>
 
                 <p
-                    className="text-center cursor-pointer text-gray-600 hover:underline"
+                    className="text-center cursor-pointer text-gray-600"
                     onClick={toggleLoginForm}
                 >
-                    {isLoginForm ? "Not registered yet? Click here to Register" : "Already registered? Sign in Now"}
+                    {isLoginForm ? (
+                        <p>Not registered yet? <span className='text-sky-600 hover:underline'>Click here to Register</span></p>
+                    ) : (
+                        <p>Already registered? <span className='text-sky-600 hover:underline'>Sign in Now</span></p>
+                    )}
                 </p>
             </form>
         </div>
