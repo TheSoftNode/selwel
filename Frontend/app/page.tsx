@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 // import Team from "@/components/Landing/Team";
 import Pricing from "@/components/Landing/Pricing";
 import CTA from "@/components/Landing/CTA";
+import FAQ from "@/components/Landing/FAQ";
 
 export default function Home()
 {
@@ -18,6 +19,7 @@ export default function Home()
       <Services />
       <Testimonials />
       <Pricing />
+      <FAQ />
       <CTA />
       {/* <Team /> */}
     </>
