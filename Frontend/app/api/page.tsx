@@ -2,13 +2,13 @@
 
 import { FC } from 'react';
 
-interface PageProps
-{
-    params: Record<string, string>;
-    searchParams: Record<string, string>;
-}
+// interface PageProps
+// {
+//     params: Record<string, string>;
+//     searchParams: Record<string, string>;
+// }
 
-const Page: FC<PageProps> = ({ params, searchParams }) =>
+const Page = () =>
 {
     return <h1>Api</h1>;
 };

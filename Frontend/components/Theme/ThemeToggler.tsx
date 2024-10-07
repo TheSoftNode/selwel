@@ -6,9 +6,9 @@ import { Button } from "../ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
-type Props = {};
+// type Props = {};
 
-const ThemeToggler = (props: Props) =>
+const ThemeToggler = () =>
 {
   const { theme, setTheme } = useTheme();
   return (

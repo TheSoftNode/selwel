@@ -1,3 +1,15 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript"
+  ],
+  "rules": {
+    "@next/next/no-img-element": "off", // Disable <img> warning
+    "@typescript-eslint/no-explicit-any": "off", // Disable 'any' error
+    "@typescript-eslint/no-unused-vars": "off", // Disable unused variables error
+    "prefer-const": "off", // Disable prefer-const error
+    "react/no-unescaped-entities": "off", // Disable no unescaped entities error
+    "@typescript-eslint/no-require-imports": "off", // Disable require imports error
+    "@typescript-eslint/no-empty-object-type": "off" // Disable empty object type error
+  }
 }

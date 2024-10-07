@@ -1,44 +1,53 @@
 import { getToken } from "@/lib/auth";
 
-interface RequestOptions {
+interface RequestOptions
+{
     method: string;
     headers: HeadersInit;
     body?: string;
 }
 
-interface FetchResponse<T = any> {
+interface FetchResponse<T = any>
+{
     data: T;
     status: number;
 }
 
-export default class ApiProxy {
-    static async getHeaders(requireAuth: boolean): Promise<HeadersInit> {
+export default class ApiProxy
+{
+    static async getHeaders(requireAuth: boolean): Promise<HeadersInit>
+    {
         let headers: HeadersInit = {
             "Content-Type": "application/json",
             "Accept": "application/json",
         };
         const authToken = getToken();
-        if (authToken && requireAuth === true) {
+        if (authToken && requireAuth === true)
+        {
             headers["Authorization"] = `Bearer ${authToken}`;
         }
         return headers;
     }
 
-    static async handleFetch(endpoint: string, requestOptions: RequestOptions): Promise<FetchResponse> {
+    static async handleFetch(endpoint: string, requestOptions: RequestOptions): Promise<FetchResponse>
+    {
         let data = {};
         let status = 500;
-        try {
+        try
+        {
             const response = await fetch(endpoint, requestOptions);
             data = await response.json();
             status = response.status;
-        } catch (error) {
+        } catch (error)
+        {
             data = { message: "Cannot reach API server", error: error };
             status = 500;
         }
         return { data, status };
     }
 
-    static async put(endpoint: string, object: any, requireAuth: boolean): Promise<FetchResponse> {
+    static async put(endpoint: string, object: any, requireAuth: boolean): Promise<FetchResponse>
+    {
         const jsonData = JSON.stringify(object);
         const headers = await ApiProxy.getHeaders(requireAuth);
         const requestOptions: RequestOptions = {
@@ -49,7 +58,8 @@ export default class ApiProxy {
         return await ApiProxy.handleFetch(endpoint, requestOptions);
     }
 
-    static async delete(endpoint: string, requireAuth: boolean): Promise<FetchResponse> {
+    static async delete(endpoint: string, requireAuth: boolean): Promise<FetchResponse>
+    {
         const headers = await ApiProxy.getHeaders(requireAuth);
         const requestOptions: RequestOptions = {
             method: "DELETE",
@@ -58,7 +68,8 @@ export default class ApiProxy {
         return await ApiProxy.handleFetch(endpoint, requestOptions);
     }
 
-    static async post(endpoint: string, object: any, requireAuth: boolean): Promise<FetchResponse> {
+    static async post(endpoint: string, object: any, requireAuth: boolean): Promise<FetchResponse>
+    {
         const jsonData = JSON.stringify(object);
         const headers = await ApiProxy.getHeaders(requireAuth);
         const requestOptions: RequestOptions = {
@@ -69,7 +80,8 @@ export default class ApiProxy {
         return await ApiProxy.handleFetch(endpoint, requestOptions);
     }
 
-    static async get(endpoint: string, requireAuth: boolean): Promise<FetchResponse> {
+    static async get(endpoint: string, requireAuth: boolean): Promise<FetchResponse>
+    {
         const headers = await ApiProxy.getHeaders(requireAuth);
         const requestOptions: RequestOptions = {
             method: "GET",
