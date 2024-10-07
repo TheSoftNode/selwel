@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-//components
 import Nav from "./Nav";
 import { usePathname } from "next/navigation";
 import ThemeToggler from "../Theme/ThemeToggler";
@@ -19,20 +17,27 @@ const Header = (props: Props) =>
 
   useEffect(() =>
   {
-    const scrollYPos: any = window.addEventListener("scroll", () =>
+    const handleScroll = () =>
     {
-      window.scrollY > 50 ? setHeader(true) : setHeader(false);
-    });
+      setHeader(window.scrollY > 80);
+    };
 
-    return () => window.removeEventListener("scroll", scrollYPos);
-  });
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Call the handleScroll function to set the initial state correctly
+    handleScroll();
+
+    // Clean up the event listener on unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       className={`${header
-        ? "bg-white shadow-lg dark:bg-accent "
+        ? "bg-white shadow-lg dark:bg-accent"
         : "dark:bg-transparent"
-        } sticky top-0 z-30 transition-all ${pathname === "/" && ""}`}
+        } sticky top-0 z-[300] transition-all ${pathname === "/" && ""}`}
     >
       <div className="mx-auto">
         <div className="flex justify-between items-center">
@@ -47,12 +52,10 @@ const Header = (props: Props) =>
             {/* nav */}
             <Nav
               containerStyles="hidden md:flex gap-x-8 items-center"
-              linkStyles="relative hover:text-primary  transition-all"
-              underlineStyles="absolute left-0 top-full bg-primary h-[2px]  w-full"
+              linkStyles="relative hover:text-primary transition-all"
+              underlineStyles="absolute left-0 top-full bg-primary h-[2px] w-full"
             />
-
             <ThemeToggler />
-
             <Link href={'auth/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
               Login
             </Link>
