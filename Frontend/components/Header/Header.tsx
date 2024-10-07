@@ -37,7 +37,7 @@ const Header = (props: Props) =>
       className={`${header
         ? "bg-white shadow-lg dark:bg-accent"
         : "dark:bg-transparent"
-        } sticky top-0 z-[300] transition-all ${pathname === "/" && ""}`}
+        } sticky top-0 z-30 transition-all ${pathname === "/" && ""}`}
     >
       <div className="mx-auto">
         <div className="flex justify-between items-center">
