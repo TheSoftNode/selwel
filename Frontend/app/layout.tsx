@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from '@/app/ui/fonts';
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ThemeProviders from "@/components/Theme/ThemeProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -23,6 +25,15 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <ThemeProviders>
+          <ToastContainer
+            theme="light"
+            position='top-center'
+            autoClose={4000}
+            closeOnClick={true}
+            pauseOnFocusLoss={false}
+            pauseOnHover={false}
+            toastClassName=".toast-message"
+          />
           <Header />
           {children}
           <Footer />

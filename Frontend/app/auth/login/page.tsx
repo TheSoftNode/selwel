@@ -1,10 +1,59 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
+import { toast } from 'react-toastify';
+
+const USER_API_URL = "/api/users/"
 
 const Login = () =>
 {
     const [isLoginForm, setIsLoginForm] = useState(true);
+
+    const [message, setMessage] = useState<string>("");
+    const [errors, setErrors] = useState<Record<string, any>>({});
+    const [error, setError] = useState<string>("");
+
+    async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void>
+    {
+        event.preventDefault();
+        setMessage("");
+        setErrors({});
+        setError("");
+
+        const formData = new FormData(event.currentTarget);
+        const objectFromForm = Object.fromEntries(formData.entries());
+        const jsonData = JSON.stringify(objectFromForm);
+
+        const requestOptions: RequestInit = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: jsonData,
+        };
+
+        try
+        {
+            const response = await fetch(USER_API_URL, requestOptions);
+            if (response.status === 201 || response.status === 200)
+            {
+                toast.success("Welcome. Do well to login")
+            } else
+            {
+                const data = await response.json();
+                setErrors(data);
+                if (!data.email)
+                {
+                    setError("There was an error with your request. Please try again.");
+                }
+            }
+        } catch (e: any)
+        {
+            toast.error(e.message)
+            setError("An error occurred while processing your request.");
+        }
+    }
+
 
     const toggleLoginForm = () =>
     {
@@ -13,7 +62,7 @@ const Login = () =>
 
     return (
         <div className='flex items-start  pt-10 justify-center min-h-screen bg-gray-100'>
-            <form className="bg-white shadow-md p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105">
                 <h1 className="font-extrabold text-2xl text-center text-sky-700 mb-6">
                     {isLoginForm ? "Welcome, Please sign in." : "Registration"}
                 </h1>
