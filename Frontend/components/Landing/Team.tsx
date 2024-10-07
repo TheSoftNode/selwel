@@ -8,36 +8,37 @@ const teamMembers = [
     {
         name: "Alice Johnson",
         role: "CEO",
-        avatar: "/team/alice.jpg",
+        avatar: "/about/team.png",
         description: "Alice is a visionary leader with over 10 years of experience in the industry."
     },
     {
         name: "Bob Smith",
         role: "CTO",
-        avatar: "/team/bob.jpg",
+        avatar: "/about/team.png",
         description: "Bob is a tech enthusiast who leads our development team."
     },
     {
         name: "Charlie Davis",
         role: "Designer",
-        avatar: "/team/charlie.jpg",
+        avatar: "/about/team.png",
         description: "Charlie crafts beautiful user experiences and interfaces."
     },
     {
         name: "Dana Lee",
         role: "Marketing Manager",
-        avatar: "/team/dana.jpg",
+        avatar: "/about/team.png",
         description: "Dana drives our marketing strategies and client relations."
     },
     {
         name: "Eve Carter",
         role: "Product Manager",
-        avatar: "/team/eve.jpg",
+        avatar: "/about/team.png",
         description: "Eve ensures our products meet market needs and customer expectations."
     },
 ];
 
-const Team = () => {
+const Team = () =>
+{
     return (
         <div className="bg-gray-100 py-16">
             <div className="max-w-7xl mx-auto px-4">
