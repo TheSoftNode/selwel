@@ -13,7 +13,7 @@ type Props = {
 const links = [
     { path: "/", name: "home" },
     { path: "/market", name: "market" },
-    { path: "/company", name: "company" },
+    { path: "/about", name: "company" },
     { path: "/support", name: "support" },
 ];
 
