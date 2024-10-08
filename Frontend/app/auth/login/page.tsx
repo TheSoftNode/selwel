@@ -77,10 +77,11 @@ const Login = () =>
                         toast.error("There was an error with your request. Please try again.")
                     }
                     toast.error(data.email[0].message)
+                    console.log(errors)
                 }
             } catch (e: any)
             {
-                toast.error(e.message);
+                console.log(errors)
                 setError("An error occurred while processing your request.");
             }
         }
