@@ -28,5 +28,10 @@ class LoginSchema(Schema):
     email: str
     password: str
 
-class TokenSchema(Schema):
+class LoginResponseSchema(Schema):
     token: str
+    refreshToken: str
+    email: EmailStr
+
+class RefreshTokenSchema(Schema):
+    refresh_token: str

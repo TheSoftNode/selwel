@@ -5,22 +5,25 @@ import { NextResponse } from 'next/server';
 
 const DJANGO_API_LOGIN_URL = `${DJANGO_API_ENDPOINT}/token/pair`;
 
-interface RequestData {
+interface RequestData
+{
   email: string;
   password: string;
 }
 
-interface ResponseData {
+interface ResponseData
+{
   access: string;
   refresh: string;
   email: string;
   [key: string]: any; // Allow additional properties in the response
 }
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: Request): Promise<NextResponse>
+{
   const requestData: RequestData = await request.json();
   const jsonData = JSON.stringify(requestData);
-  
+
   const requestOptions: RequestInit = {
     method: 'POST',
     headers: {
@@ -32,7 +35,8 @@ export async function POST(request: Request): Promise<NextResponse> {
   const response = await fetch(DJANGO_API_LOGIN_URL, requestOptions);
   const responseData: ResponseData = await response.json();
 
-  if (response.ok) {
+  if (response.ok)
+  {
     console.log('logged in');
     const { email, access, refresh } = responseData;
     setToken(access);
