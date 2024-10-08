@@ -170,9 +170,9 @@ const Login = () =>
         setIsLoginForm(!isLoginForm);
     };
 
-    
+
     return (
-        <div className="flex items-start pt-10 justify-center min-h-screen bg-gray-100">
+        <div className="flex items-start py-10 justify-center min-h-screen bg-gray-100">
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105">
                 <h1 className="font-extrabold text-2xl text-center text-sky-700 mb-6">
                     {isLoginForm ? "Welcome, Please sign in." : "Registration"}
