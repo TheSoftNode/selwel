@@ -1,9 +1,11 @@
 "use client";
 
+import { DJANGO_BASE_URL } from '@/config/defaults';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, FormEvent } from 'react';
 import { toast } from 'react-toastify';
 
-const USER_API_URL = "/api/users/";
+const USER_API_URL = `${DJANGO_BASE_URL}/api/users/`;
 const COUNTRIES_API_URL = "https://restcountries.com/v3.1/all";
 
 const Login = () =>
@@ -13,6 +15,8 @@ const Login = () =>
     const [message, setMessage] = useState<string>("");
     const [errors, setErrors] = useState<Record<string, any>>({});
     const [error, setError] = useState<string>("");
+
+    const router = useRouter();
 
     // Fetch countries from external API
     useEffect(() =>
@@ -55,10 +59,13 @@ const Login = () =>
 
         try
         {
-            const response = await fetch(USER_API_URL, requestOptions);
+            setIsLoginForm(false)
+            const response = await fetch("http://127.0.0.1:8001/api/users/", requestOptions);
             if (response.status === 201 || response.status === 200)
             {
                 toast.success("Welcome. Do well to login");
+                // router.push("/login")
+                setIsLoginForm(true)
             } else
             {
                 const data = await response.json();
