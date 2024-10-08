@@ -6,7 +6,7 @@ import jwt
 from datetime import datetime, timedelta
 from django.utils import timezone
 
-from .forms import UserCreateForm
+from .forms import UserCreateForm, UserLoginForm
 from .models import User
 from .schemas import (
     UserCreateSchema,
@@ -41,6 +41,10 @@ def register(request, data: UserCreateSchema):
 # /api/users/login/
 @router.post("/login", response={200: TokenSchema, 400: ErrorUserCreateSchema})
 def login(request, data: LoginSchema):
+    form = UserLoginForm(data.dict())
+    if not form.is_valid():
+        form_errors = json.loads(form.errors.as_json())
+        return 400, form_errors
     try:
         user = User.objects.get(email=data.email)
     except User.DoesNotExist:

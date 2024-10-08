@@ -23,3 +23,10 @@ class ErrorUserCreateSchema(Schema):
     email: List[Any]
     password: List[Any]
     # non_field_errors: List[dict] = []
+
+class LoginSchema(Schema):
+    email: str
+    password: str
+
+class TokenSchema(Schema):
+    token: str

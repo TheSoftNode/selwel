@@ -8,4 +8,4 @@ class User(models.Model):
     email = models.EmailField()
     password = models.TextField(blank=True, null=True)
     updated = models.DateTimeField(auto_now=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
