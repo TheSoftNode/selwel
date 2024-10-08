@@ -258,7 +258,7 @@ const Login = () => {
   // Get dynamic class for password field based on strength
   const getPasswordStrengthClass = () => {
     switch (passwordStrength) {
-      case 0:
+    //   case 0:
       case 1:
         return 'border-red-500';
       case 2:
@@ -281,8 +281,8 @@ const Login = () => {
         {!isLoginForm && (
           <>
             {/* Country of Residence Dropdown */}
-            <label className="block text-gray-700">
-              Country of Residence <span className="text-red-500">*</span>
+            <label className="block text-gray-700 mb-3">
+              Country of Residence <span className="text-sky-600">*</span>
               <select
                 {...register("country")}
                 className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200 ease-in-out"
@@ -298,8 +298,8 @@ const Login = () => {
             </label>
 
             {/* Account Type Dropdown */}
-            <label className="block text-gray-700">
-              Account Type <span className="text-red-500">*</span>
+            <label className="block text-gray-700 mb-3">
+              Account Type <span className="text-sky-600">*</span>
               <select
                 {...register("accountType")}
                 className="p-3 my-2 w-full bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200 ease-in-out"
@@ -313,8 +313,8 @@ const Login = () => {
           </>
         )}
 
-        <label className="block text-gray-700">
-          Email <span className="text-red-500">*</span>
+        <label className="block text-gray-700 mb-3">
+          Email <span className="text-sky-600">*</span>
           <input
             type="email"
             {...register("email")}
@@ -324,8 +324,8 @@ const Login = () => {
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </label>
 
-        <label className="block text-gray-700">
-          Password <span className="text-red-500">*</span>
+        <label className="block text-gray-700 mb-3">
+          Password <span className="text-sky-600">*</span>
           <input
             type="password"
             {...register("password")}
