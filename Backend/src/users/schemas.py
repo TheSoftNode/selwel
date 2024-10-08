@@ -5,24 +5,25 @@ from pydantic import EmailStr
 
 
 class UserCreateSchema(Schema):
-    # Create -> user
-    # Register
     country: str = None
     accountType: str = None
     email: EmailStr
     password: str = None
-    # timestamp: datetime
-    # updated: datetime
+
+class UserOutSchema(Schema):
+    id: int
+    country: str = None
+    accountType: str = None
+    email: str
+    
+   
 
 
 class ErrorUserCreateSchema(Schema):
-    # Create -> Data
-    # UserData
-    country: List[Any]
-    accountType: List[Any]
-    email: List[Any]
-    password: List[Any]
-    # non_field_errors: List[dict] = []
+    country: Optional[List[Any]] = None
+    accountType: Optional[List[Any]] = None
+    email: Optional[List[Any]] = None
+    password: Optional[List[Any]] = None
 
 class LoginSchema(Schema):
     email: str

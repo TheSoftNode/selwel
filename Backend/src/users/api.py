@@ -4,8 +4,9 @@ from ninja.security import HttpBearer
 from django.contrib.auth.hashers import make_password, check_password
 from django.conf import settings
 import jwt
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.utils import timezone
+from django.db import IntegrityError
 
 from .forms import UserCreateForm, UserLoginForm
 from .models import User
@@ -14,31 +15,33 @@ from .schemas import (
     ErrorUserCreateSchema,
     LoginSchema,
     LoginResponseSchema,
-    RefreshTokenSchema
+    RefreshTokenSchema,
+    UserOutSchema
 )
 
 router = Router()
 
 # /api/users/
-@router.post("",
-    response={
-        201: UserCreateSchema,
-        400: ErrorUserCreateSchema
-    },
-    auth=None
-)
-def register(request, data: UserCreateSchema):
-    form = UserCreateForm(data.dict())
-    if not form.is_valid():
-        form_errors = json.loads(form.errors.as_json())
-        return 400, form_errors
+# @router.post("",
+#     response={
+#         201: UserCreateSchema,
+#         400: ErrorUserCreateSchema
+#     },
+#     auth=None
+# )
+# def register(request, data: UserCreateSchema):
+#     form = UserCreateForm(data.dict())
+#     print(form)
+#     if not form.is_valid():
+#         form_errors = json.loads(form.errors.as_json())
+#         return 400, form_errors
     
-    # Encrypt the password before saving
-    obj = form.save(commit=False)
-    obj.password = make_password(obj.password)
-    obj.save()
+#     # Encrypt the password before saving
+#     obj = form.save(commit=False)
+#     obj.password = make_password(obj.password)
+#     obj.save()
     
-    return 201, obj
+#     return 201, obj
 
 # JWT Authentication
 class JWTAuth(HttpBearer):
@@ -51,6 +54,32 @@ class JWTAuth(HttpBearer):
             return None
         except (jwt.DecodeError, User.DoesNotExist):
             return None
+        
+@router.post("", response={201: UserOutSchema, 400: ErrorUserCreateSchema}, auth=None)
+def register(request, data: UserCreateSchema):
+    form = UserCreateForm(data.dict())
+    if not form.is_valid():
+        errors = ErrorUserCreateSchema()
+        if not form.is_valid():
+            form_errors = json.loads(form.errors.as_json())
+            # Pass form errors to ErrorUserCreateSchema
+            errors = ErrorUserCreateSchema(**form_errors)
+            return 400, form_errors
+
+    try:
+        user = form.save(commit=False)
+        user.password = make_password(user.password)
+        user.save()
+
+        return 201, UserOutSchema(
+            id=user.id,
+            country=user.country,
+            accountType=user.accountType,
+            email=user.email,
+        )
+    except IntegrityError:
+        errors = ErrorUserCreateSchema(email=["Email already exists."])
+        return 400, errors
 
 # /api/users/login/
 @router.post("/login", response={200: LoginResponseSchema, 400: ErrorUserCreateSchema})

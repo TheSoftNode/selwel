@@ -57,7 +57,7 @@ const Login = () =>
             body: jsonData,
         };
 
-        if (isLoginForm === false)
+        if (!isLoginForm)
         {
             try
             {
@@ -74,7 +74,9 @@ const Login = () =>
                     if (!data.email)
                     {
                         setError("There was an error with your request. Please try again.");
+                        toast.error("There was an error with your request. Please try again.")
                     }
+                    toast.error(data.email[0].message)
                 }
             } catch (e: any)
             {
