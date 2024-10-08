@@ -1,30 +1,62 @@
 import json
 from ninja import Router
+from django.contrib.auth.hashers import make_password, check_password
+from django.conf import settings
+import jwt
+from datetime import datetime, timedelta
+from django.utils import timezone
 
-import helpers
 from .forms import UserCreateForm
 from .models import User
 from .schemas import (
     UserCreateSchema,
-    ErrorUserCreateSchema
+    ErrorUserCreateSchema,
+    LoginSchema,
+    TokenSchema
 )
 
 router = Router()
 
-
 # /api/users/
-@router.post("", 
+@router.post("",
     response={
         201: UserCreateSchema,
         400: ErrorUserCreateSchema
     },
-    auth=helpers.api_auth_user_or_annon
-    )
-def register(request, data:UserCreateSchema): 
+    auth=None
+)
+def register(request, data: UserCreateSchema):
     form = UserCreateForm(data.dict())
     if not form.is_valid():
         form_errors = json.loads(form.errors.as_json())
         return 400, form_errors
+    
+    # Encrypt the password before saving
     obj = form.save(commit=False)
+    obj.password = make_password(obj.password)
     obj.save()
+    
     return 201, obj
+
+# /api/users/login/
+@router.post("/login", response={200: TokenSchema, 400: ErrorUserCreateSchema})
+def login(request, data: LoginSchema):
+    try:
+        user = User.objects.get(email=data.email)
+    except User.DoesNotExist:
+        return 400, {"error": "Invalid email or password"}
+
+    if not check_password(data.password, user.password):
+        return 400, {"error": "Invalid email or password"}
+
+    # Generate JWT token
+    token = generate_jwt_token(user)
+    
+    return 200, {"token": token}
+
+def generate_jwt_token(user):
+    payload = {
+        'user_id': user.id,
+        'exp': timezone.now() + timedelta(days=1)  # Token expires in 1 day
+    }
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
