@@ -10,10 +10,10 @@ class UserCreateForm(forms.ModelForm):
     
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        today = timezone.now().day
+        today = timezone.now().date()
         qs = User.objects.filter(
             email=email,
-            timestamp__day=today
+            createdAt__date=today
         )
         if qs.count() >= 5:
             raise forms.ValidationError("Cannot enter this email again today.")
