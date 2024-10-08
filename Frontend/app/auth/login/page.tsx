@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import zxcvbn from 'zxcvbn';
 
 const COUNTRIES_API_URL = "https://restcountries.com/v3.1/all";
 
