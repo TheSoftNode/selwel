@@ -3,7 +3,7 @@ import { DJANGO_API_ENDPOINT } from '@/config/defaults';
 import { setRefreshToken, setToken } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
-const DJANGO_API_LOGIN_URL = `${DJANGO_API_ENDPOINT}/token/pair`;
+const DJANGO_API_LOGIN_URL = `${DJANGO_API_ENDPOINT}/login`;
 
 interface RequestData
 {
@@ -13,8 +13,8 @@ interface RequestData
 
 interface ResponseData
 {
-  access: string;
-  refresh: string;
+  token: string;
+  refreshToken: string;
   email: string;
   [key: string]: any; // Allow additional properties in the response
 }
@@ -38,9 +38,9 @@ export async function POST(request: Request): Promise<NextResponse>
   if (response.ok)
   {
     console.log('logged in');
-    const { email, access, refresh } = responseData;
-    setToken(access);
-    setRefreshToken(refresh);
+    const { email, token, refreshToken } = responseData;
+    setToken(token);
+    setRefreshToken(refreshToken);
     return NextResponse.json({ loggedIn: true, email }, { status: 200 });
   }
 

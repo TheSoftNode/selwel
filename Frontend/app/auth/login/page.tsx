@@ -57,29 +57,32 @@ const Login = () =>
             body: jsonData,
         };
 
-        try
+        if (isLoginForm === false)
         {
-            setIsLoginForm(false)
-            const response = await fetch("http://127.0.0.1:8001/api/users/", requestOptions);
-            if (response.status === 201 || response.status === 200)
+            try
             {
-                toast.success("Welcome. Do well to login");
-                // router.push("/login")
-                setIsLoginForm(true)
-            } else
-            {
-                const data = await response.json();
-                setErrors(data);
-                if (!data.email)
+                const response = await fetch("http://127.0.0.1:8001/api/users/", requestOptions);
+                if (response.status === 201 || response.status === 200)
                 {
-                    setError("There was an error with your request. Please try again.");
+                    toast.success("Welcome. Do well to login");
+                    // router.push("/login")
+                    setIsLoginForm(true)
+                } else
+                {
+                    const data = await response.json();
+                    setErrors(data);
+                    if (!data.email)
+                    {
+                        setError("There was an error with your request. Please try again.");
+                    }
                 }
+            } catch (e: any)
+            {
+                toast.error(e.message);
+                setError("An error occurred while processing your request.");
             }
-        } catch (e: any)
-        {
-            toast.error(e.message);
-            setError("An error occurred while processing your request.");
         }
+
     }
 
     const toggleLoginForm = () =>

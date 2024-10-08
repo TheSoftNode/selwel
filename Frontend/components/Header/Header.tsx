@@ -42,7 +42,7 @@ const Header = (props: Props) =>
       <div className="mx-auto">
         <div className="flex justify-between items-center">
           <Image
-            src={"/logos/logo_3.png"}
+            src={"/logos/logo-5.png"}
             width={144}
             height={100}
             alt="selwel"
