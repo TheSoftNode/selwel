@@ -44,7 +44,7 @@ const Header = (props: Props) =>
           <Image
             src={"/logos/logo_3.png"}
             width={144}
-            height={80}
+            height={100}
             alt="selwel"
             className="w-36 h-20 pt-5 p-2 px-7"
           />
