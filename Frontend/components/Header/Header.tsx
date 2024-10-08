@@ -56,7 +56,7 @@ const Header = (props: Props) =>
               underlineStyles="absolute left-0 top-full bg-primary h-[2px] w-full"
             />
             <ThemeToggler />
-            <Link href={'auth/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
+            <Link href="" className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
               Login
             </Link>
             {/* mobile nav */}
