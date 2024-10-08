@@ -6,4 +6,5 @@ dj-database-url
 psycopg[binary] # psycopg
 pydantic[email]
 python-decouple
+pyjwt
 rav
