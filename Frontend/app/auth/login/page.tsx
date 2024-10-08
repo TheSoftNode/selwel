@@ -20,6 +20,7 @@ const schema = yup.object().shape({
 
 const Login = () =>
 {
+
     const [isLoginForm, setIsLoginForm] = useState(true);
     const [countries, setCountries] = useState<string[]>([]);
     const [passwordStrength, setPasswordStrength] = useState<number>(0);
