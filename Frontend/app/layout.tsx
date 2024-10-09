@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ThemeProviders from "@/components/Theme/ThemeProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { Suspense } from "react";
+import { AuthProvider } from "@/components/Auth/authProvider";
 
 
 export const metadata: Metadata = {
@@ -24,20 +26,24 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        <ThemeProviders>
-          <ToastContainer
-            theme="light"
-            position='top-center'
-            autoClose={4000}
-            closeOnClick={true}
-            pauseOnFocusLoss={false}
-            pauseOnHover={false}
-            toastClassName=".toast-message"
-          />
-          <Header />
-          {children}
-          <Footer />
-        </ThemeProviders>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ThemeProviders>
+            <ToastContainer
+              theme="light"
+              position='top-center'
+              autoClose={4000}
+              closeOnClick={true}
+              pauseOnFocusLoss={false}
+              pauseOnHover={false}
+              toastClassName=".toast-message"
+            />
+            <AuthProvider>
+              <Header />
+              {children}
+              <Footer />
+            </AuthProvider>
+          </ThemeProviders>
+        </Suspense>
       </body>
     </html>
   );
