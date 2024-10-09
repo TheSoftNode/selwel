@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -108,9 +108,6 @@ const Register = () =>
 
     const router = useRouter();
 
-
-
-
     // Form setup using react-hook-form with yup validation
     const { register, handleSubmit, formState: { errors }, reset } = useForm<LoginFormInputs>({
         resolver: yupResolver(LoginSchema), // Adjust schema dynamically
@@ -131,20 +128,17 @@ const Register = () =>
         try
         {
             const response = await fetch(LOGIN_URL, requestOptions);
+            const resData = await response.json();
+            console.log(resData);
             if (response.ok)
             {
-                auth.login(data?.username)
+                auth.login(resData?.email)
                 toast.success("Login Successful", { className: ".toast-message" });
                 reset();
                 router.push("/");
             } else
             {
-                const resData = await response.json();
-                if (!resData.email)
-                {
-                    toast.error("There was an error with your request. Please try again.", { className: ".toast-message" })
-                }
-                toast.error(resData.email[0].message, { className: ".toast-message" })
+                toast.error(resData.error, { className: ".toast-message" })
             }
         } catch (error)
         {

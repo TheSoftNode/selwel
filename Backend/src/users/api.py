@@ -16,7 +16,8 @@ from .schemas import (
     LoginSchema,
     LoginResponseSchema,
     RefreshTokenSchema,
-    UserOutSchema
+    UserOutSchema,
+    ErrorUserLoginSchema
 )
 
 router = Router()
@@ -61,19 +62,19 @@ def register(request, data: UserCreateSchema):
         return 400, errors
 
 # /api/users/login/
-@router.post("/login", response={200: LoginResponseSchema, 400: ErrorUserCreateSchema})
+@router.post("/login", response={200: LoginResponseSchema, 400: ErrorUserLoginSchema})
 def login(request, data: LoginSchema):
-    form = UserLoginForm(data.dict())
-    if not form.is_valid():
-        form_errors = json.loads(form.errors.as_json())
-        return 400, form_errors
+    # form = UserLoginForm(data.dict())
+    # if not form.is_valid():
+    #     form_errors = json.loads(form.errors.as_json())
+    #     return 400, form_errors
     try:
         user = User.objects.get(email=data.email)
     except User.DoesNotExist:
-        return 400, {"error": "Invalid email or password"}
+        return 400, {"error": "Invalid email or password", "code": 400}
 
     if not check_password(data.password, user.password):
-        return 400, {"error": "Invalid email or password"}
+        return 400, {"error": "Invalid email or password", "code": 400}
 
     # Generate JWT tokens
     access_token = generate_jwt_token(user, token_type='access')
@@ -86,7 +87,7 @@ def login(request, data: LoginSchema):
     }
 
 # /api/users/refresh-token/
-@router.post("/refresh-token", response={200: LoginResponseSchema, 400: ErrorUserCreateSchema})
+@router.post("/refresh-token", response={200: LoginResponseSchema, 400: ErrorUserLoginSchema})
 def refresh_token(request, data: RefreshTokenSchema):
     try:
         payload = jwt.decode(data.refresh_token, settings.SECRET_KEY, algorithms=['HS256'])

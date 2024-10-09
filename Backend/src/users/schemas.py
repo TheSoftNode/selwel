@@ -15,8 +15,6 @@ class UserOutSchema(Schema):
     country: str = None
     accountType: str = None
     email: str
-    
-   
 
 
 class ErrorUserCreateSchema(Schema):
@@ -33,6 +31,13 @@ class LoginResponseSchema(Schema):
     token: str
     refreshToken: str
     email: EmailStr
+
+
+class ErrorUserLoginSchema(Schema):
+    error: str
+    code: int = 400  # Optional field for HTTP status codes
+    detail: dict = None  # Optional for providing more details on the error
+
 
 class RefreshTokenSchema(Schema):
     refresh_token: str

@@ -1,4 +1,5 @@
 "use server";
+
 import { DJANGO_API_ENDPOINT } from '@/config/defaults';
 import { setRefreshToken, setToken } from '@/lib/auth';
 import { NextResponse } from 'next/server';
@@ -15,8 +16,9 @@ interface ResponseData
 {
   token: string;
   refreshToken: string;
-  email: string;
-  [key: string]: any; // Allow additional properties in the response
+  email?: string;
+  error?: string;
+  code?: number;
 }
 
 export async function POST(request: Request): Promise<NextResponse>
@@ -34,6 +36,7 @@ export async function POST(request: Request): Promise<NextResponse>
 
   const response = await fetch(DJANGO_API_LOGIN_URL, requestOptions);
   const responseData: ResponseData = await response.json();
+  console.log(responseData)
 
   if (response.ok)
   {
@@ -44,5 +47,8 @@ export async function POST(request: Request): Promise<NextResponse>
     return NextResponse.json({ loggedIn: true, email }, { status: 200 });
   }
 
-  return NextResponse.json({ loggedIn: false, ...responseData }, { status: 400 });
+  const { error, code } = responseData;
+  console.error(`Login Error: ${error} (Code: ${code})`);
+  return NextResponse.json({ loggedIn: false, error, code }, { status: code || 400 });
+  // return NextResponse.json({ loggedIn: false, ...responseData }, { status: code || 400 });
 }
