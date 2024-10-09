@@ -21,28 +21,6 @@ from .schemas import (
 
 router = Router()
 
-# /api/users/
-# @router.post("",
-#     response={
-#         201: UserCreateSchema,
-#         400: ErrorUserCreateSchema
-#     },
-#     auth=None
-# )
-# def register(request, data: UserCreateSchema):
-#     form = UserCreateForm(data.dict())
-#     print(form)
-#     if not form.is_valid():
-#         form_errors = json.loads(form.errors.as_json())
-#         return 400, form_errors
-    
-#     # Encrypt the password before saving
-#     obj = form.save(commit=False)
-#     obj.password = make_password(obj.password)
-#     obj.save()
-    
-#     return 201, obj
-
 # JWT Authentication
 class JWTAuth(HttpBearer):
     def authenticate(self, request, token):
@@ -54,7 +32,8 @@ class JWTAuth(HttpBearer):
             return None
         except (jwt.DecodeError, User.DoesNotExist):
             return None
-        
+
+# /api/users 
 @router.post("", response={201: UserOutSchema, 400: ErrorUserCreateSchema}, auth=None)
 def register(request, data: UserCreateSchema):
     form = UserCreateForm(data.dict())
