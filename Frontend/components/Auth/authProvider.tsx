@@ -16,9 +16,9 @@ interface AuthContextType
 // Initialize AuthContext with proper types
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const LOGIN_REDIRECT_URL = "/";
-const LOGOUT_REDIRECT_URL = "/login";
-const LOGIN_REQUIRED_URL = "/login";
+const LOGIN_REDIRECT_URL = "/auth";
+const LOGOUT_REDIRECT_URL = "/auth/login";
+const LOGIN_REQUIRED_URL = "/auth/login";
 const LOCAL_STORAGE_KEY = "is-logged-in";
 const LOCAL_USERNAME_KEY = "user-email";
 

@@ -7,6 +7,7 @@ import ThemeToggler from "../Theme/ThemeToggler";
 import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
+import { useAuth } from "../Auth/authProvider";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const Header = (props: Props) =>
 {
   const [header, setHeader] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, userEmail, logout } = useAuth(); // Get authentication status and user email
 
   useEffect(() =>
   {
@@ -56,9 +58,29 @@ const Header = (props: Props) =>
               underlineStyles="absolute left-0 top-full bg-primary h-[2px] w-full"
             />
             <ThemeToggler />
-            <Link href={'auth/login'} className='px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl'>
-              Login
-            </Link>
+
+            {/* Conditional rendering based on authentication */}
+            {isAuthenticated ? (
+              <div className="flex items-center gap-x-4">
+                <span className="font-bold">
+                  {userEmail.substring(0, 4)} {/* Display the first 7 characters */}
+                </span>
+                <button
+                  onClick={logout} /* Handle user logout */
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg font-bold"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="px-6 p-2 md:ml-6 font-bold bg-lime-500 rounded-xl"
+              >
+                Login
+              </Link>
+            )}
+
             {/* mobile nav */}
             <div className="ml-4 md:hidden">
               <MobileNav />
