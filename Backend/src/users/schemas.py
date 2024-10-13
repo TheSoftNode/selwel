@@ -41,3 +41,14 @@ class ErrorUserLoginSchema(Schema):
 
 class RefreshTokenSchema(Schema):
     refresh_token: str
+
+
+class ForgotPasswordSchema(Schema):
+    email: EmailStr
+
+class ResetPasswordSchema(Schema):
+    token: str
+    new_password: str
+
+class PasswordResetResponseSchema(Schema):
+    message: str
