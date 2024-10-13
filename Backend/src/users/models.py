@@ -16,6 +16,8 @@ class User(AbstractBaseUser):
     accountType = models.TextField(blank=True, null=True)
     email = models.EmailField(unique=True)
     password = models.TextField(blank=True, null=True)
+    password_reset_token = models.CharField(max_length=100, null=True, blank=True)
+    password_reset_token_created_at = models.DateTimeField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
