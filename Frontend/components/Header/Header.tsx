@@ -37,8 +37,8 @@ const Header = (props: Props) =>
   return (
     <header
       className={`${header
-        ? "bg-white shadow-lg dark:bg-accent"
-        : "dark:bg-transparent bg-white"
+        ? "bg-white shadow-lg dark:bg-accent py-1 px-4"
+        : "dark:bg-transparent bg-white py-2 px-4"
         } sticky top-0 z-30 bg-white transition-all ${pathname === "/" && ""}`}
     >
       <div className="mx-auto">
@@ -48,14 +48,14 @@ const Header = (props: Props) =>
             width={144}
             height={100}
             alt="selwel"
-            className="w-36 h-20 pt-5 p-2 px-7"
+            className="w-28 h-16 pt-2 p-2 px-7"
           />
           <div className="flex p-4">
             {/* nav */}
             <Nav
               containerStyles="hidden md:flex gap-x-8 bg-white items-center"
               linkStyles="relative hover:text-primary transition-all"
-              underlineStyles="absolute left-0 top-full bg-primary h-[2px] w-full"
+              underlineStyles="absolute left-0 top-full bg-sky-500 h-[2px] w-full"
             />
             <ThemeToggler />
 
