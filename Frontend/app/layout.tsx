@@ -7,7 +7,7 @@ import ThemeProviders from "@/components/Theme/ThemeProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { Suspense } from "react";
-import { AuthProvider } from "@/components/Auth/authProvider";
+// import { AuthProvider } from "@/components/Auth/authProvider";
 
 
 export const metadata: Metadata = {
@@ -37,11 +37,11 @@ export default function RootLayout({
               pauseOnHover={false}
               toastClassName=".toast-message"
             />
-            <AuthProvider>
-              <Header />
-              {children}
-              <Footer />
-            </AuthProvider>
+            {/* <AuthProvider> */}
+            <Header />
+            {children}
+            <Footer />
+            {/* </AuthProvider> */}
           </ThemeProviders>
         </Suspense>
       </body>

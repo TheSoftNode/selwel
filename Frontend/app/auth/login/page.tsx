@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
-import { useAuth } from '@/components/Auth/authProvider';
+// import { useAuth } from '@/components/Auth/authProvider';
 import Link from 'next/link';
 
 const LOGIN_URL = "/api/login";
@@ -32,7 +32,7 @@ const Register = () =>
     const [strength, setStrength] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
 
-    const auth = useAuth();
+    // const auth = useAuth();
 
 
     const validatePasswordStrength = (pwd: string) =>
@@ -132,7 +132,7 @@ const Register = () =>
             console.log(resData);
             if (response.ok)
             {
-                auth.login(resData?.email)
+                // auth.login(resData?.email)
                 toast.success("Login Successful", { className: ".toast-message" });
                 reset();
                 router.push("/");
@@ -149,7 +149,8 @@ const Register = () =>
 
     return (
         <div className="flex items-start py-10 justify-center min-h-screen bg-gray-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105">
+            {/* <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105"> */}
+            <form  className="bg-white shadow-lg p-8 rounded-lg w-11/12 sm:w-96 transition-transform transform hover:scale-105">
                 <h1 className="font-extrabold text-2xl text-center text-sky-700 mb-6">
                     Welcome, Please sign in.
                 </h1>

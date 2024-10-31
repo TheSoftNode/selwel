@@ -4,20 +4,23 @@ const TOKEN_AGE = 3600
 const TOKEN_NAME = "auth-token"
 const TOKEN_REFRESH_NAME = "auth-refresh-token"
 
-export function getToken(){
+export function getToken()
+{
     // api requests
     const myAuthToken = cookies().get(TOKEN_NAME)
     return myAuthToken?.value
 }
 
 
-export function getRefreshToken(){
+export function getRefreshToken()
+{
     // api requests
     const myAuthToken = cookies().get(TOKEN_REFRESH_NAME)
     return myAuthToken?.value
 }
 
-export function setToken(authToken: string){
+export function setToken(authToken: string)
+{
     // login
     return cookies().set({
         name: TOKEN_NAME,
@@ -29,7 +32,8 @@ export function setToken(authToken: string){
     })
 }
 
-export function setRefreshToken(authRefreshToken: string){
+export function setRefreshToken(authRefreshToken: string)
+{
     // login
     return cookies().set({
         name: TOKEN_REFRESH_NAME,
@@ -41,7 +45,8 @@ export function setRefreshToken(authRefreshToken: string){
     })
 }
 
-export function deleteTokens(){
+export function deleteTokens()
+{
     // logout
     cookies().delete(TOKEN_REFRESH_NAME)
     return cookies().delete(TOKEN_NAME)
