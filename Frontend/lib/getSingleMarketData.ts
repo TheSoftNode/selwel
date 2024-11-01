@@ -2,12 +2,14 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import * as XLSX from 'xlsx';
 
-interface WeeklyDataPoint {
+interface WeeklyDataPoint
+{
     name: string;
     profit: number;
 }
 
-interface MarketData {
+interface MarketData
+{
     market: number;
     marketName: string;
     weeklyProfit: number;
@@ -21,8 +23,10 @@ interface MarketData {
     weeklyData: WeeklyDataPoint[];
 }
 
-export default async function getSingleMarketData(id: string): Promise<MarketData | null> {
-    try {
+export default async function getSingleMarketData(id: string): Promise<MarketData | null>
+{
+    try
+    {
         const filePath = path.join(process.cwd(), 'lib', 'overall_market_data.xlsx');
         const buffer = await fs.readFile(filePath);
         const workbook = XLSX.read(buffer);
@@ -33,7 +37,8 @@ export default async function getSingleMarketData(id: string): Promise<MarketDat
         // Find the specific market data based on ID (market number)
         const marketIndex = parseInt(id) - 1;
         // const marketIndex = id - 1;
-        if (marketIndex < 0 || marketIndex >= jsonData.length) {
+        if (marketIndex < 0 || marketIndex >= jsonData.length)
+        {
             console.error('Market ID not found');
             return null;
         }
@@ -60,7 +65,8 @@ export default async function getSingleMarketData(id: string): Promise<MarketDat
         };
 
         return marketData;
-    } catch (error) {
+    } catch (error)
+    {
         console.error('Error reading Excel file or processing data:', error);
         return null;
     }
