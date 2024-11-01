@@ -27,22 +27,22 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <ThemeProviders>
-            <ToastContainer
-              theme="light"
-              position='top-center'
-              autoClose={4000}
-              closeOnClick={true}
-              pauseOnFocusLoss={false}
-              pauseOnHover={false}
-              toastClassName=".toast-message"
-            />
-            {/* <AuthProvider> */}
-            <Header />
-            {children}
-            <Footer />
-            {/* </AuthProvider> */}
-          </ThemeProviders>
+          {/* <ThemeProviders> */}
+          <ToastContainer
+            theme="light"
+            position='top-center'
+            autoClose={4000}
+            closeOnClick={true}
+            pauseOnFocusLoss={false}
+            pauseOnHover={false}
+            toastClassName=".toast-message"
+          />
+          {/* <AuthProvider> */}
+          <Header />
+          {children}
+          <Footer />
+          {/* </AuthProvider> */}
+          {/* </ThemeProviders> */}
         </Suspense>
       </body>
     </html>

@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'selwellhome.wsgi.application'
 
 
 # Database
-https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -106,27 +106,27 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'Selwell',
-#        'USER': 'postgres',
-#        'PASSWORD': '',
-#        'HOST': 'localhost',
-#        'PORT': '7000',
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'Selwell',
+       'USER': 'postgres',
+       'PASSWORD': '',
+       'HOST': 'localhost',
+       'PORT': '7000',
+   }
+}
 
-DATABASE_URL = config("DATABASE_URL", cast=str, default="")
-if DATABASE_URL != "":
-    import dj_database_url
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=300,
-            conn_health_checks=True
-        )
-    }
+# DATABASE_URL = config("DATABASE_URL", cast=str, default="")
+# if DATABASE_URL != "":
+#     import dj_database_url
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             default=DATABASE_URL,
+#             conn_max_age=300,
+#             conn_health_checks=True
+#         )
+#     }
 
 
 
