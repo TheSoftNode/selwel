@@ -88,7 +88,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                         </div>
 
                         <div className="p-6">
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">Return Analysis</h2>
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-extrabold text-gray-900 mb-2">Return Analysis</h2>
 
                             <p className="text-lg text-gray-700 mb-4">
                                 Base Investment: <span className="font-bold text-black text-sm md:text-base ml-2">$1000 USD</span>
@@ -98,7 +98,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="font-semibold text-blue-600">Weekly Return</span>
                                     <div className="text-right">
-                                        <span className="text-lg md:text-xl font-bold text-green-600">
+                                        <span className="text-sm md:text-sm font-bold text-green-600">
                                             ${(profit.weeklyProfit).toFixed(3)}
                                         </span>
                                         <span className="ml-2 text-sm text-gray-600">
@@ -110,7 +110,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="font-semibold text-blue-600">Monthly Return</span>
                                     <div className="text-right">
-                                        <span className="text-lg md:text-xl font-bold text-green-600">
+                                        <span className="text-sm md:text-sm font-bold text-green-600">
                                             ${(profit.monthlyProfit).toFixed(3)}
                                         </span>
                                         <span className="ml-2 text-sm text-gray-600">
@@ -122,7 +122,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="font-semibold text-blue-600">Quarterly Return</span>
                                     <div className="text-right">
-                                        <span className="text-lg md:text-xl font-bold text-green-600">
+                                        <span className="text-sm md:text-sm font-bold text-green-600">
                                             ${(profit.quarterlyProfit).toFixed(2)}
                                         </span>
                                         <span className="ml-2 text-sm text-gray-600">
@@ -134,7 +134,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                                 <div className="flex justify-between items-center">
                                     <span className="font-semibold text-base text-blue-600">Annual Return</span>
                                     <div className="text-right">
-                                        <span className="text-lg md:text-xl font-bold text-green-600">
+                                        <span className="text-sm md:text-sm font-bold text-green-600">
                                             ${(profit.yearlyProfit).toFixed(3)}
                                         </span>
                                         <span className="ml-2 text-sm text-gray-600">
@@ -145,7 +145,7 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
                             </div>
 
                             <div className="mt-4 bg-gray-100 p-4 rounded-lg shadow-inner">
-                                <h3 className="text-lg font-semibold text-sky-700 mb-2">Return Trend:</h3>
+                                <h3 className="text-sm font-semibold text-sky-700 mb-2">Return Trend:</h3>
                                 <ResponsiveContainer width="100%" height={200}>
                                     <LineChart data={profit.weeklyData}>
                                         <CartesianGrid strokeDasharray="3 3" />

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Support = () =>
@@ -17,9 +18,12 @@ const Support = () =>
 
             {/* Call to Action Button */}
             <div className="mt-6 md:mt-8">
-                <button className="bg-white hover:bg-sky-900 text-sky-700 hover:text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                    Contact Support
-                </button>
+                <Link href="/contact">
+                    <button className="bg-white hover:bg-sky-900 text-sky-700 hover:text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                        Contact Support
+                    </button>
+                </Link>
+
             </div>
 
             {/* Decorative Elements */}

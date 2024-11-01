@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const CTA = () =>
 {
@@ -19,14 +20,18 @@ const CTA = () =>
                 <p className="text-lg md:text-xl mb-6">
                     Join us today and unlock exclusive features tailored just for you.
                 </p>
-                <motion.button
-                    className="bg-white text-sky-700 font-semibold py-3 px-6 rounded-full shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl"
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    Get Started Now
-                </motion.button>
+
+                <Link href={"/market"}>
+                    <motion.button
+                        className="bg-white text-sky-700 font-semibold py-3 px-6 rounded-full shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl"
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Get Started Now
+                    </motion.button>
+                </Link>
+
                 <div className="mt-8">
                     <p className="text-sm md:text-base">No credit card required. Start your free trial today!</p>
                 </div>

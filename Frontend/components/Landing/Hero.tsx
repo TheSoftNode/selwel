@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () =>
 {
@@ -14,9 +15,12 @@ const Hero = () =>
                     empowering you to select the perfect platform for your individual goals and experience level.
                 </p>
 
-                <button className='bg-green-600 mt-12  text-white font-semibold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300'>
-                    Get Started
-                </button>
+                <Link href={"/market"}>
+                    <button className='bg-green-600 mt-12  text-white font-semibold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300'>
+                        Get Started
+                    </button>
+                </Link>
+
             </div>
             <div className='md:basis-[45%] flex justify-center md:justify-end pt-10 md:pt-14 pr-0 md:pr-20'>
                 <Image
