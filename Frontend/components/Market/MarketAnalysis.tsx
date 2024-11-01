@@ -42,8 +42,6 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ initialData }) =>
     const profits = initialData;
     // const router = useRouter();
 
-    console.log(profits);
-
     const handleMarketChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     {
         const value = parseInt(e.target.value);
