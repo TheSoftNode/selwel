@@ -2,12 +2,30 @@ import MarketDetailPage from "@/components/Market/MarketDetailPage";
 import getSingleMarketData from "@/lib/getSingleMarketData";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import getMarketData from "@/lib/getMarketData";
 
 interface PageProps
 {
     params: {
         id: string;
     };
+}
+
+// Add generateStaticParams to get IDs from marketData.market
+export async function generateStaticParams()
+{
+    const marketData = await getMarketData();
+
+    // Ensure marketData and marketData.market exist
+    if (!marketData)
+    {
+        return [];
+    }
+
+    // Return an array of objects with the id parameter
+    return marketData.map((market) => ({
+        id: market.market.toString(),
+    }));
 }
 
 export default async function MarketDetail({ params }: PageProps)

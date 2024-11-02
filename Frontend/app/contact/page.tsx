@@ -124,7 +124,7 @@ const ContactPage: React.FC = () =>
                                             href="mailto:support@selwel.com"
                                             className="hover:underline"
                                         >
-                                            support@selwel.com
+                                            info@hitoai.com
                                         </a>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@ const ContactPage: React.FC = () =>
                                     <Phone className="mr-4 w-6 h-6" />
                                     <div>
                                         <p className="font-semibold">Phone</p>
-                                        <span>+1 (555) 123-4567</span>
+                                        <span>+353 89 983 2147</span>
                                     </div>
                                 </div>
 
@@ -141,7 +141,7 @@ const ContactPage: React.FC = () =>
                                     <MapPin className="mr-4 w-6 h-6" />
                                     <div>
                                         <p className="font-semibold">Address</p>
-                                        <span>123 Fintech Avenue, New York, NY 10001</span>
+                                        <span>HITOAI Limited Sandyford, Dublin 18 Dublin, Ireland</span>
                                     </div>
                                 </div>
                             </div>
